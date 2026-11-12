@@ -5,10 +5,10 @@ public class CameraController : MonoBehaviour
 	[SerializeField] GameObject Player;  // プレイヤー
 	private Vector3 offset;  // 相対距離
 
-	void Strot()
+	void Start()
 	{
 		// カメラとプレイヤーとの相対距離を求める
-		offset = transform.position-Player.transform.position;
+		offset = transform.position - Player.transform.position;
 	}
 
     void Update()
