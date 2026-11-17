@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BossHP : MonoBehaviour
 {
-	[SerializeField] int maxHp;
-	[SerializeField] int attackPower;
-	[SerializeField] int defensePower;
+	[SerializeField] int maxHp;  // HP
+	[SerializeField] int attackPower;  // çUåÇóÕ
+	[SerializeField] int defensePower; 
 	int currentHp;
 
 	private void Start()
