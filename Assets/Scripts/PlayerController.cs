@@ -3,23 +3,38 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject Gamemanager;
+    [SerializeField] GameObject Playerprefab;
+    float speed = 0.01f;
+    float plyaerx;
+    float playery;
+    public float PlayerPostionX()
     {
-        
+        return transform.position.x;
+    }
+    public float PlayerPostionZ()
+    {
+        return transform.position.z;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(0,0,0.01f);
+        transform.Translate(0,0,speed);
         if (Keyboard.current.aKey.isPressed)
         {
-            transform.Translate(-0.01f,0,0);
+            transform.Translate(-speed,0,0);
         }
         if(Keyboard.current.dKey.isPressed)
         {
-            transform.Translate(0.01f,0,0);
+            transform.Translate(speed,0,0);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("double"))
+        {
+            Gamemanager.GetComponent<GameManager>().PlayerNum(2);
+            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlag();
         }
     }
 }
