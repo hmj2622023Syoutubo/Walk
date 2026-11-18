@@ -33,7 +33,7 @@ public class OtomoController : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("boss"))
 		{
-			Gamemanager.GetComponent<GameManager>().PlayerNum(2);
+			Gamemanager.GetComponent<GameManager>().PlayerAdd(2);
 			Playerprefab.GetComponent<PlayerPrefab>().PlayerFlag();
 		}
 	}

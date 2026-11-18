@@ -14,12 +14,7 @@ public class PlayerPrefab : MonoBehaviour
     {
         playerflag = true;
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         GameObject item;
