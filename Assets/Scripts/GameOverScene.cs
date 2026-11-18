@@ -16,7 +16,7 @@ public class GameOver : MonoBehaviour
 		// クリックしたときゲーム画面になる
 		if (Mouse.current.leftButton.wasPressedThisFrame)
 		{
-			SceneManager.LoadScene("Title");
+			SceneManager.LoadScene("TitleScene");
 		}
 
 
