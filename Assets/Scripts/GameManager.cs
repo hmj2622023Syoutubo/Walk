@@ -4,46 +4,48 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject playerprefab;
-    int playernum = 1;
-    int Characternum = 0;
+    [SerializeField] GameObject otomo;
+    int Characternum;
     int Add;
-    int Sub;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void PlayerAdd(int num)
+    int time;
+    public void CharacterAdd(int num)
     {
         Add = 0;
         Add += num;
-        playernum += num;
     }
-    public void PlayerSub(int num)
+    public void CharacterSub(int num)
     {
-        Sub = 0;
-        Sub += num;
-        playernum -= num;
+        Debug.Log("Œ¸‚ç‚³‚ê‚é‘O‚Ìcharacternum"+Characternum);
+        Characternum -= num;
+        Debug.Log("‚Ö‚ç‚³‚ê‚½‚º‚¦‚¦‚¦‚¦‚¦‚¦" + Characternum);
     }
-    public int GetPlayerAdd()
+    public int GetCharacterAdd()
     {
         return Add;
     }
-    public int GetPlayerNum()
+    public int GetCharacterNum()
     {
-        return playernum;
-    }
-
-    public int CharacterNum()
-    {
-        Characternum++;
         return Characternum;
     }
-   
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public int CharacterNum(int num)
     {
-        
+        Characternum += num;
+        Debug.Log("ŠÖ”“Ç‚ñ‚Åcharacternum‘‚â‚µ‚½"+Characternum);
+        return Characternum;
+    }
+    private void Start()
+    {
+        Characternum = 0;
+        Debug.Log("‰Šú‰»‚µ‚½");
+    }
+    private void Update()
+    {
+        time++;
+        if(time> 100)
+        {
+            time = 0;
+            Debug.Log("charactrnum‚ğí‚É•\¦"+Characternum);
+        }
     }
 }
