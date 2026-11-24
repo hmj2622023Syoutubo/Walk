@@ -6,21 +6,26 @@ public class PlayerPrefab : MonoBehaviour
     [SerializeField] GameObject Mesh;
     [SerializeField] GameObject gamemanager;
     [SerializeField] GameManager manager;
-    bool playerflag = false;
+    bool playerflagadd = false;
+    bool playerflagdouble = false;
     int count = 0;
     int positionX = 1;
     int positionZ =1;
     float CompanionX;
     float CompanionZ;
-    public void PlayerFlag()
+    public void PlayerFlagAdd()
     {
-        playerflag = true;
+        playerflagadd = true;
+    }
+    public void PlayerFlagDouble()
+    {
+        playerflagdouble = true;
     }
 
     void Update()
     {
         GameObject item;
-        if (playerflag == true)
+        if (playerflagadd == true)
         {
             CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
             CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
@@ -38,7 +43,27 @@ public class PlayerPrefab : MonoBehaviour
                     count = 0;
                 }
             }
-            playerflag = false;
+            playerflagadd = false;
+        }
+        if(playerflagdouble == true)
+        {
+            CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
+            CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
+            for (int i = 0; i < gamemanager.GetComponent<GameManager>().GetCharacterNum(); i++)
+            {
+                item = Instantiate(Mesh);
+                item.transform.position = new Vector3(CompanionX + positionX, 0, CompanionZ - positionZ);
+                item.GetComponent<OtomoController>().SetGameManager(manager);
+                count++;
+                positionX--;
+                if (count == 3)
+                {
+                    positionX = 1;
+                    positionZ++;
+                    count = 0;
+                }
+            }
+            playerflagdouble = false;
         }
     }
 }

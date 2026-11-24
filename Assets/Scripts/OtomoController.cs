@@ -48,6 +48,7 @@ public class OtomoController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("boss"))
         {
+            gamemanager.GetComponent<GameManager>().CharacterSub(1);
             Destroy(gameObject);
         }
     }

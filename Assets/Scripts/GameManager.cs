@@ -1,10 +1,13 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject playerprefab;
     [SerializeField] GameObject otomo;
+    [SerializeField] GameObject text;
     int Characternum;
     int Add;
     int time;
@@ -16,6 +19,11 @@ public class GameManager : MonoBehaviour
     public void CharacterSub(int num)
     {
         Characternum -= num;
+    }
+    public void CharacterDivide(int num)
+    {
+        Characternum /= num;
+        Debug.Log("îºï™Ç…ÇµÇΩíºå„ÇÃcharacter" + Characternum);
     }
     public int GetCharacterAdd()
     {
@@ -44,5 +52,6 @@ public class GameManager : MonoBehaviour
             time = 0;
             Debug.Log("charactrnumÇèÌÇ…ï\é¶"+Characternum);
         }
+        text.GetComponent<TextMeshProUGUI>().text = Characternum.ToString("F1");
     }
 }

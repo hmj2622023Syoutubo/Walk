@@ -34,16 +34,25 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("double"))
+        if(collision.gameObject.CompareTag("plus"))
         {
             Gamemanager.GetComponent<GameManager>().CharacterAdd(2);
-            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlag();
+            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagAdd();
         }
         if(collision.gameObject.CompareTag("degree"))
         {
             Gamemanager.GetComponent<GameManager>().CharacterSub(2);
             Debug.Log("hetta");
         }
+        if (collision.gameObject.CompareTag("double"))
+        {
+            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble();
+        }
+        if (collision.gameObject.CompareTag("divide"))
+        {
+            Gamemanager.GetComponent<GameManager>().CharacterDivide(2);
+        }
+
         if (collision.gameObject.CompareTag("boss"))
         {
             //Destroy(gameObject);
