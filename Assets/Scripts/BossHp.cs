@@ -2,26 +2,12 @@ using UnityEngine;
 
 public class BossHP : MonoBehaviour
 {
-	[SerializeField] int maxHp;  // HP
-	[SerializeField] int attackPower;  // 攻撃力
-	[SerializeField] int defensePower; 
-	int currentHp;
+	[SerializeField] int maxHp;  // HP 
+	private int currentHp;
 
 	private void Start()
 	{
 		currentHp = maxHp;
-	}
-
-	// ボスのステイタス
-	void TakeDamage(int damage)
-	{
-		int damageToTake = Mathf.Max(0, damage - defensePower);
-		currentHp -= damageToTake;
-		if(currentHp <= 0)
-		{
-			currentHp = 0;
-			Die();
-		}
 	}
 
 
@@ -29,7 +15,18 @@ public class BossHP : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
-			TakeDamage(10);  // ダメージの調整
+			TakeDamage(1);  // ダメージの調整
+		}
+	}
+
+	private void TakeDamage(int damage)
+	{
+		currentHp -= damage;
+		currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+
+		if(currentHp < 0)
+		{
+			Die();
 		}
 	}
 
