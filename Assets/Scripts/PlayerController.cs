@@ -19,7 +19,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        transform.Translate(0,0,speed);
+        if (transform.position.z < 100)
+        {
+            transform.Translate(0, 0, speed);
+        }
         if (Keyboard.current.aKey.isPressed && transform.position.x > -3)
         {
             transform.Translate(-speed,0,0);
@@ -40,6 +43,10 @@ public class PlayerController : MonoBehaviour
         {
             Gamemanager.GetComponent<GameManager>().CharacterSub(2);
             Debug.Log("hetta");
+        }
+        if (collision.gameObject.CompareTag("boss"))
+        {
+            //Destroy(gameObject);
         }
     }
 }

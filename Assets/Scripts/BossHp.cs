@@ -9,11 +9,9 @@ public class BossHP : MonoBehaviour
 	{
 		currentHp = maxHp;
 	}
-
-
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.CompareTag("Player"))
+		if(other.gameObject.CompareTag("player"))
 		{
 			TakeDamage(1);  // É_ÉÅÅ[ÉWÇÃí≤êÆ
 		}
@@ -22,9 +20,10 @@ public class BossHP : MonoBehaviour
 	private void TakeDamage(int damage)
 	{
 		currentHp -= damage;
-		currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+		//currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+		Debug.Log("ìñÇΩÇËÇ‹ÇµÇΩ");
 
-		if(currentHp < 0)
+		if(currentHp <= 0)
 		{
 			Die();
 		}
@@ -34,5 +33,6 @@ public class BossHP : MonoBehaviour
 	void Die()
 	{
 		Debug.Log("Boss is Dead");
+		Destroy(gameObject);
 	}
 }

@@ -18,7 +18,6 @@ public class OtomoController : MonoBehaviour
         Number = 0;
         Number = gamemanager.GetComponent<GameManager>().CharacterNum(1);
         Debug.Log("toujou");
-       // Debug.Log(Number);
     }
     void Update()
     {
@@ -27,8 +26,6 @@ public class OtomoController : MonoBehaviour
         if (Keyboard.current.aKey.isPressed && transform.position.x > -3)
         {
             transform.Translate(-speed, 0, 0);
-        Debug.Log("常にnumberを表示" + Number);
-        Debug.Log("nownumberを表示" + nowNumber);
         }
         if (Keyboard.current.dKey.isPressed && transform.position.x < 3)
         {
@@ -39,15 +36,17 @@ public class OtomoController : MonoBehaviour
            Debug.Log("キノコ消えた");
            Destroy(gameObject);
         }
-        else if(Number == nowNumber)
-        {
-            Debug.Log("消えてない");
-           // Debug.Log(Number);
-        }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("boss"))
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("boss"))
         {
             Destroy(gameObject);
         }
