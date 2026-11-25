@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerPrefab : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject Mesh;
-    [SerializeField] GameObject gamemanager;
+    [SerializeField] GameObject player;  // プレイヤー
+    [SerializeField] GameObject Mesh;  // お供
+    [SerializeField] GameObject gamemanager; // ゲームマネージャー
     [SerializeField] GameManager manager;
     bool playerflagadd = false;
     bool playerflagdouble = false;

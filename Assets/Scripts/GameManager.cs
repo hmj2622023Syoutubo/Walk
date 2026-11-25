@@ -11,29 +11,40 @@ public class GameManager : MonoBehaviour
     int Characternum;
     int Add;
     int time;
+    
+    // 増える数を受け取る
     public void CharacterAdd(int num)
     {
         Add = 0;
         Add += num;
     }
+
+    // 受け取った数をひく
     public void CharacterSub(int num)
     {
         Characternum -= num;
     }
+
+    // 受け取った数でわる
     public void CharacterDivide(int num)
     {
         Characternum /= num;
         Debug.Log("半分にした直後のcharacter" + Characternum);
     }
+
+    // 増えた数を渡す 
     public int GetCharacterAdd()
     {
         return Add;
     }
+
+    // キャラクターの総数を渡す
     public int GetCharacterNum()
     {
         return Characternum;
     }
 
+    // キャラクターの総数を増やして渡す
     public int CharacterNum(int num)
     {
         Characternum += num;
@@ -42,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        Characternum = 0;
+        Characternum = 0; // 初期化
     }
     private void Update()
     {
