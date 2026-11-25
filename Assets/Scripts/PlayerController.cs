@@ -5,21 +5,22 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] GameObject Gamemanager;
     [SerializeField] GameObject Playerprefab;
+    [SerializeField] int pos;
     float speed = 0.01f;
     float plyaerx;
     float playery;
     int Number;
-    public float PlayerPostionX()
+    public float PlayerPostionX() // プレイヤーのx座標を渡す
     {
         return transform.position.x;
     }
-    public float PlayerPostionZ()
+    public float PlayerPostionZ() // プレイヤーのz座標を渡す
     {
         return transform.position.z;
     }
     void Update()
     {
-        if (transform.position.z < 100)
+        if (transform.position.z < pos)
         {
             transform.Translate(0, 0, speed);
         }
@@ -34,23 +35,23 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("plus"))
+        if(collision.gameObject.CompareTag("plus")) // プラスの壁に当たった時の処理
         {
             Gamemanager.GetComponent<GameManager>().CharacterAdd(2);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagAdd();
         }
         if(collision.gameObject.CompareTag("degree"))
         {
-            Gamemanager.GetComponent<GameManager>().CharacterSub(2);
+            Gamemanager.GetComponent<GameManager>().CharacterSub(2); // マイナスの壁に当たった時の処理
             Debug.Log("hetta");
         }
         if (collision.gameObject.CompareTag("double"))
         {
-            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble();
+            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble(); // かけるの壁に当たった時の処理
         }
         if (collision.gameObject.CompareTag("divide"))
         {
-            Gamemanager.GetComponent<GameManager>().CharacterDivide(2);
+            Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // 悪の壁に当たった時の処理
         }
 
         if (collision.gameObject.CompareTag("boss"))
