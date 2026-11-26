@@ -1,6 +1,9 @@
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +14,7 @@ public class GameManager : MonoBehaviour
     int Characternum;
     int Add;
     int time;
+    List<int> otomonum = new List<int>();
     
     // 増える数を受け取る
     public void CharacterAdd(int num)
@@ -19,7 +23,7 @@ public class GameManager : MonoBehaviour
         Add += num;
     }
 
-    // 受け取った数をひく
+    // 受け取った数でひく
     public void CharacterSub(int num)
     {
         Characternum -= num;
@@ -45,11 +49,29 @@ public class GameManager : MonoBehaviour
     }
 
     // キャラクターの総数を増やして渡す
-    public int CharacterNum(int num)
+    public int CharacterNum()
     {
-        Characternum += num;
-
+        Characternum ++;
+        otomonum.Add(Characternum);
         return Characternum;
+    }
+
+    // リストから消す
+    public void CharacterRemove(int num)
+    {
+        otomonum.Remove(num);
+    }
+
+    // リストの中で最も大きい数を消す
+    public int GetCharacterList()
+    {
+        if (otomonum.Count > 0)
+        {
+            int maxScore = otomonum.Max();
+            Debug.Log("最大値: " + maxScore);
+            return maxScore;
+        }
+        return 0;
     }
     private void Start()
     {
@@ -57,12 +79,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        time++;
-        if(time> 100)
+        if(Characternum < otomonum.Count)
         {
-            time = 0;
-            Debug.Log("charactrnumを常に表示"+Characternum);
+            otomonum.Remove(otomonum.Max());
         }
-        text.GetComponent<TextMeshProUGUI>().text = Characternum.ToString("F1");
+        text.GetComponent<TextMeshProUGUI>().text = otomonum.Count.ToString("F1");
     }
 }

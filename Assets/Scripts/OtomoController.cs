@@ -17,12 +17,12 @@ public class OtomoController : MonoBehaviour
     private void Start()
     {
         Number = 0;
-        Number = gamemanager.GetComponent<GameManager>().CharacterNum(1); // 呼ばれた時にナンバーを割り振る
+        Number = gamemanager.GetComponent<GameManager>().CharacterNum(); // 呼ばれた時にナンバーを割り振る
         Debug.Log("toujou");
     }
     void Update()
     {
-        nowNumber = gamemanager.GetComponent<GameManager>().GetCharacterNum();
+        nowNumber = gamemanager.GetComponent<GameManager>().GetCharacterList();
         transform.Translate(0, 0, speed); // 一定のスピードで前に進む
         if (Keyboard.current.aKey.isPressed && transform.position.x > -3) // aが押されている時左に進む
         {
@@ -34,7 +34,7 @@ public class OtomoController : MonoBehaviour
         }
         if (Number > nowNumber) // 割り振られた数字より全体の数が少ない時に消える
         {
-            Debug.Log("キノコ消えた");
+            gamemanager.GetComponent<GameManager>().CharacterRemove(Number);
             Destroy(gameObject);
         }
     }
@@ -42,7 +42,8 @@ public class OtomoController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("boss")) // ボスに当たった時消える
         {
-            gamemanager.GetComponent<GameManager>().CharacterSub(1);
+            gamemanager.GetComponent<GameManager>().CharacterRemove(Number);
+            Destroy(gameObject);
         }
     }
 }
