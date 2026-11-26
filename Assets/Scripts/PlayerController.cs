@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     {
         return transform.position.x;
     }
+    public float PlayerPostionY() // プレイヤーのy座標を渡す
+    {
+        return transform.position.y;
+    }
     public float PlayerPostionZ() // プレイヤーのz座標を渡す
     {
         return transform.position.z;
@@ -37,20 +41,24 @@ public class PlayerController : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("plus")) // プラスの壁に当たった時の処理
         {
+            Destroy(collision.gameObject);
             Gamemanager.GetComponent<GameManager>().CharacterAdd(2);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagAdd();
         }
         if(collision.gameObject.CompareTag("degree"))
         {
+            Destroy(collision.gameObject);
             Gamemanager.GetComponent<GameManager>().CharacterSub(2); // マイナスの壁に当たった時の処理
             Debug.Log("hetta");
         }
         if (collision.gameObject.CompareTag("double"))
         {
+            Destroy(collision.gameObject);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble(); // かけるの壁に当たった時の処理
         }
         if (collision.gameObject.CompareTag("divide"))
         {
+            Destroy(collision.gameObject);
             Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // 悪の壁に当たった時の処理
         }
 

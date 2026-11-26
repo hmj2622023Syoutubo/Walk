@@ -12,6 +12,7 @@ public class PlayerPrefab : MonoBehaviour
     int positionX = 1;
     int positionZ =1;
     float CompanionX;
+    float CompanionY;
     float CompanionZ;
     public void PlayerFlagAdd()
     {
@@ -28,11 +29,12 @@ public class PlayerPrefab : MonoBehaviour
         if (playerflagadd == true)
         {
             CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
+            CompanionY = player.GetComponent<PlayerController>().PlayerPostionY();
             CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
             for (int i = 0; i < gamemanager.GetComponent<GameManager>().GetCharacterAdd(); i++)
             {
                 item = Instantiate(Mesh);
-                item.transform.position = new Vector3(CompanionX + positionX, 0, CompanionZ - positionZ);
+                item.transform.position = new Vector3(CompanionX + positionX, CompanionY, CompanionZ - positionZ);
                 item.GetComponent<OtomoController>().SetGameManager(manager);
                 count++;
                 positionX--;
@@ -48,11 +50,12 @@ public class PlayerPrefab : MonoBehaviour
         if(playerflagdouble == true)
         {
             CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
+            CompanionY = player.GetComponent<PlayerController>().PlayerPostionY();
             CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
             for (int i = 0; i < gamemanager.GetComponent<GameManager>().GetCharacterNum(); i++)
             {
                 item = Instantiate(Mesh);
-                item.transform.position = new Vector3(CompanionX + positionX, 0, CompanionZ - positionZ);
+                item.transform.position = new Vector3(CompanionX + positionX, CompanionY, CompanionZ - positionZ);
                 item.GetComponent<OtomoController>().SetGameManager(manager);
                 count++;
                 positionX--;

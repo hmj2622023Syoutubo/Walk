@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -79,7 +80,11 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Characternum < otomonum.Count)
+        if(Characternum < 0)
+        {
+            SceneManager.LoadScene("GameoverScene");
+        }
+        if(Characternum < otomonum.Count && otomonum.Count > 0)
         {
             otomonum.Remove(otomonum.Max());
         }
