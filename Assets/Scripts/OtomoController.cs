@@ -24,14 +24,6 @@ public class OtomoController : MonoBehaviour
     {
         nowNumber = gamemanager.GetComponent<GameManager>().GetCharacterList();
         transform.Translate(0, 0, speed); // 一定のスピードで前に進む
-        if (Keyboard.current.aKey.isPressed && transform.position.x > -3) // aが押されている時左に進む
-        {
-            transform.Translate(-speed, 0, 0);
-        }
-        if (Keyboard.current.dKey.isPressed && transform.position.x < 3) // dが押されている時右に進む
-        {
-            transform.Translate(speed, 0, 0);
-        }
         if (Number > nowNumber) // 割り振られた数字より全体の数が少ない時に消える
         {
             gamemanager.GetComponent<GameManager>().CharacterRemove(Number);

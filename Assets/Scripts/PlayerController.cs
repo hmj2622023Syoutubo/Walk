@@ -7,9 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject Playerprefab;
     [SerializeField] int pos;
     float speed = 0.01f;
-    float plyaerx;
-    float playery;
-    int Number;
+    bool a = false;
     public float PlayerPostionX() // プレイヤーのx座標を渡す
     {
         return transform.position.x;
@@ -37,34 +35,29 @@ public class PlayerController : MonoBehaviour
             transform.Translate(speed,0,0);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.CompareTag("plus")) // プラスの壁に当たった時の処理
+        if (other.gameObject.CompareTag("plus")) // プラスの壁に当たった時の処理
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             Gamemanager.GetComponent<GameManager>().CharacterAdd(2);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagAdd();
         }
-        if(collision.gameObject.CompareTag("degree"))
+        if (other.gameObject.CompareTag("degree"))
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             Gamemanager.GetComponent<GameManager>().CharacterSub(2); // マイナスの壁に当たった時の処理
-            Debug.Log("hetta");
         }
-        if (collision.gameObject.CompareTag("double"))
+        if (other.gameObject.CompareTag("double"))
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble(); // かけるの壁に当たった時の処理
         }
-        if (collision.gameObject.CompareTag("divide"))
+        if (other.gameObject.CompareTag("divide") && a == false)
         {
-            Destroy(collision.gameObject);
-            Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // 悪の壁に当たった時の処理
-        }
-
-        if (collision.gameObject.CompareTag("boss"))
-        {
-            //Destroy(gameObject);
+            
+            Destroy(other.gameObject);
+            Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // わるの壁に当たった時の処理
         }
     }
 }

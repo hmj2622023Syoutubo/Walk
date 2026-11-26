@@ -28,13 +28,28 @@ public class GameManager : MonoBehaviour
     public void CharacterSub(int num)
     {
         Characternum -= num;
+        if (Characternum < otomonum.Count && otomonum.Count > 0)
+        {
+            int sub = otomonum.Count - Characternum;
+            for (int i = 0; i < sub; i++)
+            {
+                otomonum.Remove(otomonum.Max());
+            }
+        }
     }
 
     // 受け取った数でわる
     public void CharacterDivide(int num)
     {
         Characternum /= num;
-        Debug.Log("半分にした直後のcharacter" + Characternum);
+        if (Characternum < otomonum.Count && otomonum.Count > 0)
+        {
+            int sub = otomonum.Count - Characternum;
+            for (int i = 0; i < sub; i++)
+            {
+                otomonum.Remove(otomonum.Max());
+            }
+        }
     }
 
     // 増えた数を渡す 
@@ -63,13 +78,12 @@ public class GameManager : MonoBehaviour
         otomonum.Remove(num);
     }
 
-    // リストの中で最も大きい数を消す
+    // リストの中で最も大きい数を渡す
     public int GetCharacterList()
     {
         if (otomonum.Count > 0)
         {
             int maxScore = otomonum.Max();
-            Debug.Log("最大値: " + maxScore);
             return maxScore;
         }
         return 0;
@@ -80,13 +94,16 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        time++;
+        if(time >= 100)
+        {
+            time = 0;
+            Debug.Log("characternum表示" + Characternum);
+            Debug.Log("リストの長さ表示" + otomonum.Count);
+        }
         if(Characternum < 0)
         {
             SceneManager.LoadScene("GameoverScene");
-        }
-        if(Characternum < otomonum.Count && otomonum.Count > 0)
-        {
-            otomonum.Remove(otomonum.Max());
         }
         text.GetComponent<TextMeshProUGUI>().text = otomonum.Count.ToString("F1");
     }
