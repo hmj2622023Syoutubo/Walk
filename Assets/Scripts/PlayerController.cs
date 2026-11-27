@@ -43,21 +43,20 @@ public class PlayerController : MonoBehaviour
             Gamemanager.GetComponent<GameManager>().CharacterAdd(2);
             Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagAdd();
         }
-        if (other.gameObject.CompareTag("degree"))
+        if (other.gameObject.CompareTag("degree")) // マイナスの壁に当たった時の処理
         {
             Destroy(other.gameObject);
-            Gamemanager.GetComponent<GameManager>().CharacterSub(2); // マイナスの壁に当たった時の処理
+            Gamemanager.GetComponent<GameManager>().CharacterSub(2); 
         }
-        if (other.gameObject.CompareTag("double"))
+        if (other.gameObject.CompareTag("double")) // かけるの壁に当たった時の処理
         {
             Destroy(other.gameObject);
-            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble(); // かけるの壁に当たった時の処理
+            Playerprefab.GetComponent<PlayerPrefab>().PlayerFlagDouble(); 
         }
-        if (other.gameObject.CompareTag("divide") && a == false)
+        if (other.gameObject.CompareTag("divide")) // かけるの壁に当たった時の処理
         {
-            
             Destroy(other.gameObject);
-            Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // わるの壁に当たった時の処理
+            Gamemanager.GetComponent<GameManager>().CharacterDivide(2); // かけるの壁に当たった時の処理
         }
     }
 }
