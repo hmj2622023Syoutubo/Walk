@@ -22,14 +22,16 @@ public class PlayerPrefab : MonoBehaviour
     {
         playerflagdouble = true;
     }
-
+    private void Start()
+    {
+        CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
+        CompanionY = player.GetComponent<PlayerController>().PlayerPostionY();
+    }
     void Update()
     {
         GameObject item;
         if (playerflagadd == true)
         {
-            CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
-            CompanionY = player.GetComponent<PlayerController>().PlayerPostionY();
             CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
             for (int i = 0; i < gamemanager.GetComponent<GameManager>().GetCharacterAdd(); i++)
             {
@@ -49,8 +51,6 @@ public class PlayerPrefab : MonoBehaviour
         }
         if(playerflagdouble == true)
         {
-            CompanionX = player.GetComponent<PlayerController>().PlayerPostionX();
-            CompanionY = player.GetComponent<PlayerController>().PlayerPostionY();
             CompanionZ = player.GetComponent<PlayerController>().PlayerPostionZ();
             for (int i = 0; i < gamemanager.GetComponent<GameManager>().GetCharacterNum(); i++)
             {
